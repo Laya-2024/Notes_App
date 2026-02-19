@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - NotesApp</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">📝 NotesApp</div>
+    <div class="nav-user">
+      <span id="user-name">Welcome!</span>
+      <button id="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="sidebar">
+      <button id="new-note-btn" class="new-note-btn">➕ New Note</button>
+      
+      <div class="search-section">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Search notes...">
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+      
+      <div class="filter-section">
+        <h3>Categories</h3>
+        <div class="category-filters">
+          <button class="filter-btn active" data-category="all">All Notes</button>
+          <button class="filter-btn" data-category="personal">Personal</button>
+          <button class="filter-btn" data-category="work">Work</button>
+          <button class="filter-btn" data-category="ideas">Ideas</button>
+          <button class="filter-btn" data-category="todo">To-Do</button>
+        </div>
+      </div>
+      
+      <div class="sort-section">
+        <h3>Sort By</h3>
+        <select id="sort-select">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="title-asc">Title A-Z</option>
+          <option value="title-desc">Title Z-A</option>
+          <option value="category">Category</option>
+        </select>
+      </div>
+      
+      <div class="stats-section">
+        <h3>Statistics</h3>
+        <div class="stat-item">
+          <span>Total Notes:</span>
+          <span id="total-notes">0</span>
+        </div>
+        <div class="stat-item">
+          <span>Categories:</span>
+          <span id="total-categories">0</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="notes-header">
+        <h2 id="section-title">All Notes</h2>
+        <div class="view-toggle">
+          <button id="grid-view" class="view-btn active">⊞</button>
+          <button id="list-view" class="view-btn">☰</button>
+        </div>
+      </div>
+      
+      <div id="notes-container" class="notes-grid">
+        <div class="empty-state">
+          <div class="empty-icon">📝</div>
+          <h3>No notes yet</h3>
+          <p>Create your first note to get started</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Note Modal -->
+  <div id="note-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">New Note</h2>
+        <button id="close-modal" class="close-btn">✕</button>
+      </div>
+      
+      <form id="note-form" class="note-form">
+        <input type="text" id="note-title" placeholder="Note title..." required>
+        
+        <select id="note-category" required>
+          <option value="">Select Category</option>
+          <option value="personal">Personal</option>
+          <option value="work">Work</option>
+          <option value="ideas">Ideas</option>
+          <option value="todo">To-Do</option>
+        </select>
+        
+        <div class="editor-toolbar">
+          <button type="button" class="format-btn" data-command="bold">B</button>
+          <button type="button" class="format-btn" data-command="italic">I</button>
+          <button type="button" class="format-btn" data-command="underline">U</button>
+          <button type="button" class="format-btn" data-command="insertUnorderedList">•</button>
+        </div>
+        
+        <div id="note-content" class="note-editor" contenteditable="true" placeholder="Start writing your note..."></div>
+        
+        <div class="note-tags">
+          <input type="text" id="tag-input" placeholder="Add tags (press Enter)">
+          <div id="tags-container"></div>
+        </div>
+        
+        <div class="modal-actions">
+          <button type="button" id="cancel-btn">Cancel</button>
+          <button type="submit" id="save-btn">Save Note</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview Modal -->
+  <div id="preview-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="preview-title"></h2>
+        <div class="preview-actions">
+          <button id="edit-note-btn">Edit</button>
+          <button id="delete-note-btn">Delete</button>
+          <button id="close-preview" class="close-btn">✕</button>
+        </div>
+      </div>
+      
+      <div class="preview-meta">
+        <span id="preview-category" class="category-badge"></span>
+        <span id="preview-date"></span>
+      </div>
+      
+      <div id="preview-content" class="preview-content"></div>
+      
+      <div id="preview-tags" class="preview-tags"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
